@@ -1,4 +1,4 @@
-package com.catcheat.predev.common.enums;
+package com.catcheat.api.common.enums;
 
 public enum UserRole {
     USER,   // 일반 사용자

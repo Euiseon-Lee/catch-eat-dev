@@ -1,9 +1,8 @@
-package com.catcheat.predev.security.auth;
+package com.catcheat.api.security.auth;
 
-import com.catcheat.predev.security.entity.User;
-import com.catcheat.predev.security.repository.UserRepository;
-import com.catcheat.predev.security.model.CustomUserDetails;
-import jakarta.transaction.Transactional;
+import com.catcheat.api.security.entity.User;
+import com.catcheat.api.security.repository.UserRepository;
+import com.catcheat.api.security.model.CustomUserDetails;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

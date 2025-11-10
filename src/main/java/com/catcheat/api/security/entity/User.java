@@ -1,4 +1,4 @@
-package com.catcheat.predev.security.entity;
+package com.catcheat.api.security.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,7 +1,7 @@
-package com.catcheat.predev.security.service;
+package com.catcheat.api.security.service;
 
-import com.catcheat.predev.security.entity.User;
-import com.catcheat.predev.security.repository.UserRepository;
+import com.catcheat.api.security.entity.User;
+import com.catcheat.api.security.repository.UserRepository;
 import jakarta.transaction.Transactional;
 
 import java.util.Optional;

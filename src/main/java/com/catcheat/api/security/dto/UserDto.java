@@ -1,4 +1,4 @@
-package com.catcheat.predev.security.dto;
+package com.catcheat.api.security.dto;
 
 import lombok.Getter;
 

@@ -1,6 +1,6 @@
-package com.catcheat.predev.security.repository;
+package com.catcheat.api.security.repository;
 
-import com.catcheat.predev.security.entity.User;
+import com.catcheat.api.security.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,8 @@
-package com.catcheat.predev.security.auth;
+package com.catcheat.api.security.auth;
 
-import com.catcheat.predev.security.entity.User;
-import com.catcheat.predev.security.repository.UserRepository;
-import com.catcheat.predev.security.model.CustomOAuth2User;
+import com.catcheat.api.security.entity.User;
+import com.catcheat.api.security.repository.UserRepository;
+import com.catcheat.api.security.model.CustomOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;

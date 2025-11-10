@@ -1,6 +1,6 @@
-package com.catcheat.predev.security.model;
+package com.catcheat.api.security.model;
 
-import com.catcheat.predev.security.entity.User;
+import com.catcheat.api.security.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import java.util.Collection;
