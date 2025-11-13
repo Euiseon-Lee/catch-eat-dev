@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PreDevCatchEatApplication {
+public class CatchEatPreDevApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PreDevCatchEatApplication.class, args);
+		SpringApplication.run(CatchEatPreDevApplication.class, args);
 	}
-
 }
