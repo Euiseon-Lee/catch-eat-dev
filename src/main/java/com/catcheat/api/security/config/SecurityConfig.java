@@ -44,6 +44,24 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+            // 251119.설명 - API 테스트를 위한 임시 설정
+            // CSRF: 폼 기반이 아니라 Postman/JSON API 테스트니까 일단 끔
+            .csrf(AbstractHttpConfigurer::disable)
+
+            // 요청별 권한 설정
+            .authorizeHttpRequests(auth -> auth
+                    .requestMatchers("/api/**").permitAll()  // API는 전부 열기
+                    .anyRequest().permitAll()               // 나머지도 일단 전부 허용
+            )
+
+            // 기본 로그인 폼 비활성화
+            .formLogin(AbstractHttpConfigurer::disable)
+
+            // HTTP Basic 인증도 비활성화
+            .httpBasic(AbstractHttpConfigurer::disable);
+
+
+            /* 251119.주석처리 - 권한 설정
             .csrf(AbstractHttpConfigurer::disable)                                  // CSRF 보호 비활성화 (Spring Security 6.1 기준 최신 방식)
             .authorizeHttpRequests(auth -> auth     // authorizeHttpRequest()는 특정 URL 패턴 별 접근 권한을 설정함
                 .requestMatchers("/", "/auth/**", "/public/**").permitAll()  // 특정 경로는 인증 없이 접근 가능
@@ -54,7 +72,7 @@ public class SecurityConfig {
             )
             .formLogin(withDefaults())                                              // 기본 로그인 폼 활성화 (OAuth2 사용 시 비활성화 가능 / JWT를 사용할 경우, 기본 로그인 폼을 비활성화하는 것이 일반적 / loginPage("/login")으로 커스텀 가능)
             .logout(withDefaults());                                                // 기본 로그아웃 기능 활성화
-
+             */
         return http.build();
     }
 }
