@@ -34,28 +34,21 @@ public class StoreController {
         return storeService.create(requestDto);
     }
 
-    // 매장 단건 조회
+    // 매장 단건 조회 (id 기준)
     @GetMapping("/{id}")
-    public StoreResponseDto get(@PathVariable Long id) {
-        return storeService.get(id);
+    public StoreResponseDto getById(@PathVariable Long id) {
+        return storeService.getById(id);
     }
 
-    // 매장 전체 조회
+    // 매장 단건 조회 (storeCode 기준)
+    @GetMapping("/code/{storeCode}")
+    public StoreResponseDto getByStoreCode(@PathVariable String storeCode) {
+        return storeService.getByStoreCode(storeCode);
+    }
+
+    // 전체 매장 조회
     @GetMapping
     public List<StoreResponseDto> getAll() {
         return storeService.getAll();
-    }
-
-    // 매장 수정
-    @PutMapping("/{id}")
-    public StoreResponseDto update(@PathVariable Long id,
-                                   @RequestBody StoreRequestDto requestDto) {
-        return storeService.update(id, requestDto);
-    }
-
-    // 매장 삭제
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        storeService.delete(id);
     }
 }

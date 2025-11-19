@@ -2,6 +2,8 @@ package com.catcheat.api.store;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 /**
  * 🏪 StoreRepository
  *  - Store 엔티티와 DB 간의 CRUD(등록·조회·수정·삭제) 작업을 담당하는 인터페이스
@@ -42,7 +44,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *  - 엔티티 이름(Store)과 필드명(code, name, ...)으로 쿼리 자동 매핑
  *
  * 🧩 커스텀 메서드도 가능 (메서드명만 작성하면 자동 쿼리 생성)
- *  - Optional<Store> findByCode(String code);
+ *  - Optional<Store> findByStoreCode(String code);
  *  - List<Store> findByOpenedTrue();
  *
  * 💡 요약
@@ -51,5 +53,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *  - SQL 작성 없이 객체 지향적으로 DB 조작 가능
  */
 public interface StoreRepository extends JpaRepository<Store, Long> {
-
+    Optional<Store> findByStoreCode(String storeCode);
 }

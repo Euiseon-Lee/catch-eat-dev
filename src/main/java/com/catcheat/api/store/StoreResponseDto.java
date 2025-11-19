@@ -19,16 +19,17 @@ import lombok.Setter;
 @Builder
 public class StoreResponseDto {
     private Long id;
-    private String code;
+    private String storeCode;
     private String name;
-    private String address;
-    private boolean opened;
+    private String storeStatus;
 
+    private String address;
     private String province;
     private String city;
     private String district;
     private String roadAddress;
     private String lotAddress;
+
     private Double latitude;
     private Double longitude;
 
@@ -38,10 +39,10 @@ public class StoreResponseDto {
     public static StoreResponseDto from(Store store) {
         return StoreResponseDto.builder()
                 .id(store.getId())
-                .code(store.getCode())
+                .storeCode(store.getStoreCode())
                 .name(store.getName())
+                .storeStatus(store.getStoreStatus())
                 .address(store.getAddress())
-                .opened(store.isOpened())
                 .province(store.getProvince())
                 .city(store.getCity())
                 .district(store.getDistrict())
