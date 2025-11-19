@@ -1,5 +1,5 @@
 /**
-    가게 분류              Prefix  store_code 예시
+    매장 분류              Prefix  store_code 예시
     Fine Dining         FD      FD000001
     Omakase             OM      OM000001
     Family Restaurant   FR      FR000001
@@ -9,7 +9,7 @@
     Bakery              BK      BK000001
     Fast Food           FF      FF000001
 
-    가게 상태
+    매장 상태
     00  폐업
     01  영업 중
     02  휴무
@@ -18,8 +18,8 @@
 */
 CREATE TABLE store (
     id              BIGSERIAL        PRIMARY KEY
-    , store_code    VARCHAR(20)      NOT NULL UNIQUE        -- 가게 코드 (FD/OM/FR + 6자리 번호)
-    , name          VARCHAR(100)     NOT NULL               -- 가게명
+    , store_code    VARCHAR(20)      NOT NULL UNIQUE        -- 매장 코드 (FD/OM/FR + 6자리 번호)
+    , name          VARCHAR(100)     NOT NULL               -- 매장명
     , store_status  VARCHAR(2)       NOT NULL DEFAULT '01'  -- 00~04 상태코드
 
     , address       VARCHAR(255)
@@ -34,7 +34,7 @@ CREATE TABLE store (
     , longitude     DOUBLE PRECISION
 );
 
--- 조회용 인덱스 (가게 코드로 단건 조회)
+-- 조회용 인덱스 (매장 코드로 단건 조회)
 CREATE UNIQUE INDEX idx_store_code
     ON store (store_code);
 
