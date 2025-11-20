@@ -1,15 +1,15 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/ce    # ?? ??? ?? DB??? ??
-    username: postgres                          # ?? DB ??
-    password: '#vmfhwprxm12'                    # ?? ????
+    url: jdbc:postgresql://localhost:5432/ce
+    username: postgres
+    password: '#vmfhwprxm12'
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: none          # ??? ?? DDL ?????? none/validate ??
-    show-sql: true            # ??? SQL ???
+      ddl-auto: none          # No auto DDL changes (use your own SQL schema)
+    show-sql: true            # Print SQL queries in console
     properties:
       hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true      # Format SQL output for readability
+        dialect: org.hibernate.dialect.PostgreSQLDialect      # PostgreSQL dialect
