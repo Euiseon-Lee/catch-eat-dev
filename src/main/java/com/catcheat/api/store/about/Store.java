@@ -1,4 +1,4 @@
-package com.catcheat.api.store;
+package com.catcheat.api.store.about;
 
 import com.catcheat.api.common.BaseEntity;
 import jakarta.persistence.Column;

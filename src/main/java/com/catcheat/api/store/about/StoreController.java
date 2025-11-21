@@ -1,4 +1,4 @@
-package com.catcheat.api.store;
+package com.catcheat.api.store.about;
 
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

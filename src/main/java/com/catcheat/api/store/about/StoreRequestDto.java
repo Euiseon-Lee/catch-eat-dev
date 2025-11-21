@@ -1,4 +1,4 @@
-package com.catcheat.api.store;
+package com.catcheat.api.store.about;
 
 import lombok.Getter;
 import lombok.Setter;
