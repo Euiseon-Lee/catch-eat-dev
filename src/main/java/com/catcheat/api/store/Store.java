@@ -1,5 +1,6 @@
 package com.catcheat.api.store;
 
+import com.catcheat.api.common.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ import lombok.Setter;
 @Builder
 @Entity
 @Table(name = "store")
-public class Store {
+public class Store extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -11,28 +11,34 @@
 
     매장 상태
     00  폐업
-    01  영업 중
-    02  휴무
-    03  임시 휴무
+    01  정상 영업
+    02  단기 임시 휴점 (몇 일~1주 정도)
+    03  장기 임시 휴점 (공사/리뉴얼  등 수 주 ~ 수 개월)
     04  기타
 */
 CREATE TABLE store (
-    store_id        BIGSERIAL       PRIMARY KEY
-    , store_code    VARCHAR(20)     NOT NULL UNIQUE        -- 매장 코드 (FD/OM/FR + 6자리 번호)
-    , store_name    VARCHAR(100)    NOT NULL               -- 매장명
-    , store_status  VARCHAR(2)      NOT NULL DEFAULT '01'  -- 00~04 상태코드
-    , store_desc    VARCHAR(1000)   NULL
+    store_id            BIGSERIAL       PRIMARY KEY
+    , store_code        VARCHAR(20)     NOT NULL UNIQUE        -- 매장 코드 (FD/OM/FR + 6자리 번호)
+    , store_name        VARCHAR(100)    NOT NULL               -- 매장명
+    , store_desc        VARCHAR(1000)   NULL
+    , store_status      VARCHAR(2)      NOT NULL DEFAULT '01'  -- 00~04 상태코드
+    , closed_start_date DATE            NULL
+    , closed_end_date   DATE            NULL
+    , address           VARCHAR(255)
+    , province          VARCHAR(50)
+    , city              VARCHAR(50)
+    , district          VARCHAR(50)
 
-    , address       VARCHAR(255)
-    , province      VARCHAR(50)
-    , city          VARCHAR(50)
-    , district      VARCHAR(50)
+    , road_address      VARCHAR(255)
+    , lot_address       VARCHAR(255)
 
-    , road_address  VARCHAR(255)
-    , lot_address   VARCHAR(255)
+    , latitude          DOUBLE PRECISION
+    , longitude         DOUBLE PRECISION
 
-    , latitude      DOUBLE PRECISION
-    , longitude     DOUBLE PRECISION
+    , created_at        TIMESTAMP       NOT NULL DEFAULT NOW()
+    , created_by        VARCHAR(50)     DEFAULT 'SYSTEM'
+    , updated_at        TIMESTAMP       NOT NULL DEFAULT NOW()
+    , updated_by        VARCHAR(50)     DEFAULT 'SYSTEM'
 );
 
 -- 조회용 인덱스 (매장 코드로 단건 조회)
