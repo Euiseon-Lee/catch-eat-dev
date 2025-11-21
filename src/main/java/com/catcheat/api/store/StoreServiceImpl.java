@@ -29,8 +29,9 @@ public class StoreServiceImpl implements StoreService {
 
         Store store = Store.builder()
                 .storeCode(requestDto.getStoreCode())
-                .name(requestDto.getName())
+                .storeName(requestDto.getStoreName())
                 .storeStatus(status)
+                .storeDesc(requestDto.getStoreDesc())
                 .address(requestDto.getAddress())
                 .province(requestDto.getProvince())
                 .city(requestDto.getCity())
@@ -50,9 +51,9 @@ public class StoreServiceImpl implements StoreService {
      */
     @Override
     @Transactional(readOnly = true)
-    public StoreResponseDto getById(Long id) {
-        Store store = storeRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Store not found. id=" + id));
+    public StoreResponseDto getByStoreId(Long storeId) {
+        Store store = storeRepository.findById(storeId)
+                .orElseThrow(() -> new IllegalArgumentException("Store not found. storeId = " + storeId));
         return StoreResponseDto.from(store);
     }
 
@@ -63,7 +64,7 @@ public class StoreServiceImpl implements StoreService {
     @Transactional(readOnly = true)
     public StoreResponseDto getByStoreCode(String storeCode) {
         Store store = storeRepository.findByStoreCode(storeCode)
-                .orElseThrow(() -> new IllegalArgumentException("Store not found. storeCode=" + storeCode));
+                .orElseThrow(() -> new IllegalArgumentException("Store not found. storeCode = " + storeCode));
         return StoreResponseDto.from(store);
     }
 

@@ -23,16 +23,20 @@ public class Store {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;            // DB가 관리하는 불변 PK (내부 식별자)
+    @Column(name = "store_id")
+    private Long storeId;       // DB가 관리하는 불변 PK (내부 식별자)
 
     @Column(name = "store_code", nullable = false, unique = true)
     private String storeCode;   // 매장 코드 (예: CE000001) -> 매장을 나타내는 의미 있는 비즈니스 키 (외부에 보여지는 식별자)
 
-    @Column(name = "name", nullable = false)
-    private String name;        // 매장명
+    @Column(name = "store_name", nullable = false)
+    private String storeName;        // 매장명
 
     @Column(name = "store_status", nullable = false)
     private String storeStatus;  // 00~04 상태코드
+
+    @Column(name = "store_desc")
+    private String storeDesc;
 
     @Column(name = "address", nullable = false)
     private String address;     // 주소

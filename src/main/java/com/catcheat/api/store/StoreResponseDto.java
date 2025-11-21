@@ -18,10 +18,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class StoreResponseDto {
-    private Long id;
+    private Long storeId;
     private String storeCode;
-    private String name;
+    private String storeName;
     private String storeStatus;
+    private String storeDesc;
 
     private String address;
     private String province;
@@ -38,10 +39,11 @@ public class StoreResponseDto {
 
     public static StoreResponseDto from(Store store) {
         return StoreResponseDto.builder()
-                .id(store.getId())
+                .storeId(store.getStoreId())
                 .storeCode(store.getStoreCode())
-                .name(store.getName())
+                .storeName(store.getStoreName())
                 .storeStatus(store.getStoreStatus())
+                .storeDesc(store.getStoreDesc())
                 .address(store.getAddress())
                 .province(store.getProvince())
                 .city(store.getCity())

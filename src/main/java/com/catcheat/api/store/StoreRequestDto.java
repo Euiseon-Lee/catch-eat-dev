@@ -11,9 +11,10 @@ import lombok.Setter;
 @Setter
 public class StoreRequestDto {
     private String storeCode;   // 매장 코드
-    private String name;        // 매장 이름
+    private String storeName;   // 매장 이름
     private String storeStatus; // 매장 상태 00~04 (null이면 "01"로 처리)
-
+    private String storeDesc;   // 매장 한 줄 설명
+    
     private String address;     // 매장 주소 (전체 문자열)
     private String province;    // 도/광역시/특별시
     private String city;        // 시/구/군

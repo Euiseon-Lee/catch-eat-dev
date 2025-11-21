@@ -34,10 +34,10 @@ public class StoreController {
         return storeService.create(requestDto);
     }
 
-    // 매장 단건 조회 (id 기준)
-    @GetMapping("/{id}")
-    public StoreResponseDto getById(@PathVariable Long id) {
-        return storeService.getById(id);
+    // 매장 단건 조회 (storeId 기준)
+    @GetMapping("/{storeId}")
+    public StoreResponseDto getById(@PathVariable Long storeId) {
+        return storeService.getByStoreId(storeId);
     }
 
     // 매장 단건 조회 (storeCode 기준)

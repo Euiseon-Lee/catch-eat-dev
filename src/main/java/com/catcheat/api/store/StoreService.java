@@ -6,7 +6,7 @@ public interface StoreService {
 
     StoreResponseDto create(StoreRequestDto requestDto);
 
-    StoreResponseDto getById(Long id);
+    StoreResponseDto getByStoreId(Long storeId);
 
     StoreResponseDto getByStoreCode(String storeCode);
 
