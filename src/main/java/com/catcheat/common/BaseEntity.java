@@ -1,4 +1,4 @@
-package com.catcheat.api.common;
+package com.catcheat.common;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

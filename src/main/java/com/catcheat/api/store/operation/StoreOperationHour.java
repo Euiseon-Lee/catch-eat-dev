@@ -1,6 +1,6 @@
 package com.catcheat.api.store.operation;
 
-import com.catcheat.api.common.BaseEntity;
+import com.catcheat.common.BaseEntity;
 import com.catcheat.api.store.about.Store;
 import jakarta.persistence.*;
 import lombok.*;

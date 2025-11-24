@@ -1,6 +1,6 @@
 package com.catcheat.api.store.about;
 
-import com.catcheat.api.common.BaseEntity;
+import com.catcheat.common.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
