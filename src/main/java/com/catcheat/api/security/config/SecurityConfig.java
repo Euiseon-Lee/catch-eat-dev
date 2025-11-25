@@ -50,7 +50,11 @@ public class SecurityConfig {
 
             // 요청별 권한 설정
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/api/**").permitAll()  // API는 전부 열기
+                    .requestMatchers(
+                        "/api/**"
+                        , "/swagger-ui/**"
+                        , "/v3/api-docs/**"
+                    ).permitAll()  // API는 전부 열기
                     .anyRequest().permitAll()               // 나머지도 일단 전부 허용
             )
 
