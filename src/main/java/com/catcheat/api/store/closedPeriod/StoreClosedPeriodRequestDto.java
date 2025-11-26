@@ -12,10 +12,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class StoreClosedPeriodRequestDto {
-
+    private Long storeId;
     private String storeStatus;
     private String closedReason;
-
     private String startDt;   // "YYYY-MM-DD"
     private String endDt;     // null 가능
 }
