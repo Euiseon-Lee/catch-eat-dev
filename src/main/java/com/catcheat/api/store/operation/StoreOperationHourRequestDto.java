@@ -1,5 +1,6 @@
 package com.catcheat.api.store.operation;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 @Getter
@@ -7,13 +8,48 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Schema(description = "매장 운영시간 등록/수정 요청 DTO")
 public class StoreOperationHourRequestDto {
 
-    private String dayOfWeek;       // "MONDAY" ~ "SUNDAY"
-    private String openTime;        // "17:00" 형식, 없으면 null
-    private String closeTime;       // "22:00"
-    private String breakStart;      // "15:00"
-    private String breakEnd;        // "17:00"
-    private String lastOrderTime;   // "21:30"
-    private Boolean closedYn;       // true면 휴무, null이면 false로 처리
+    @Schema(
+            description = "요일 (MONDAY ~ SUNDAY)",
+            example = "MONDAY"
+    )
+    private String dayOfWeek;
+
+    @Schema(
+            description = "영업 시작 시간 (HH:mm). 휴무일(closedYn=true)이면 null 허용",
+            example = "11:30"
+    )
+    private String openTime;
+
+    @Schema(
+            description = "영업 종료 시간 (HH:mm). 휴무일(closedYn=true)이면 null 허용",
+            example = "22:00"
+    )
+    private String closeTime;
+
+    @Schema(
+            description = "브레이크타임 시작 (HH:mm). 브레이크타임이 없으면 null",
+            example = "15:00"
+    )
+    private String breakStart;
+
+    @Schema(
+            description = "브레이크타임 종료 (HH:mm). 브레이크타임 없으면 null",
+            example = "17:00"
+    )
+    private String breakEnd;
+
+    @Schema(
+            description = "라스트오더(LO) 시간 (HH:mm). 없으면 null",
+            example = "21:30"
+    )
+    private String lastOrderTime;
+
+    @Schema(
+            description = "휴무 여부. true면 해당 요일은 전일 휴무",
+            example = "false"
+    )
+    private Boolean closedYn;
 }
