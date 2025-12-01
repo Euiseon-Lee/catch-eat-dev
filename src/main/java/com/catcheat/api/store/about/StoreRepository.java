@@ -53,5 +53,11 @@ import java.util.Optional;
  *  - SQL 작성 없이 객체 지향적으로 DB 조작 가능
  */
 public interface StoreRepository extends JpaRepository<Store, Long> {
+    /**
+     * 매장 코드(store_code) 기준으로 단건 조회.
+     * @param storeCode 매장 코드
+     * @return Optional<Store>
+     */
     Optional<Store> findByStoreCode(String storeCode);
+
 }

@@ -11,4 +11,6 @@ public interface StoreService {
     StoreResponseDto getByStoreCode(String storeCode);
 
     List<StoreResponseDto> getAll();
+
+    StoreResponseDto update(Long storeId, StoreRequestDto dto);
 }

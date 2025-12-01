@@ -36,7 +36,12 @@ public class StoreController {
         this.storeService = storeService;
     }
 
-    /** 매장 생성 */
+    /**
+     * 신규 매장을 등록한다.
+     * - 필수: storeCode, storeName
+     * - 선택: storeStatus 미지정 시 "01"(정상 영업)로 처리
+     * - 좌표/주소 정보는 있으면 저장, 없으면 null 허용
+     */
     @PostMapping
     @Operation(summary = "매장 생성", description = "새로운 매장을 등록한다.")
     @ApiResponses({
@@ -44,10 +49,19 @@ public class StoreController {
             @ApiResponse(responseCode = "400", description = "잘못된 요청"),
             @ApiResponse(responseCode = "500", description = "서버 오류")
     })
-    public StoreResponseDto create(@RequestBody StoreRequestDto requestDto) {
+    public StoreResponseDto create(
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "등록할 매장 정보",
+                    required = true
+            )
+            @RequestBody StoreRequestDto requestDto
+    ) {
+        // 기본 상태값이 비어 있으면 "01"(정상 영업)로 강제 세팅
+        if (requestDto.getStoreStatus() == null || requestDto.getStoreStatus().isBlank()) {
+            requestDto.setStoreStatus("01");
+        }
         return storeService.create(requestDto);
     }
-
     /** storeId 기준 단건 조회 */
     @GetMapping("/{storeId}")
     @Operation(summary = "매장 단건 조회 (storeId)", description = "매장 식별자(storeId)를 기준으로 매장 정보를 조회한다.")
@@ -87,5 +101,27 @@ public class StoreController {
     })
     public List<StoreResponseDto> getAll() {
         return storeService.getAll();
+    }
+
+    /** storeId 기준 수정 */
+    @PutMapping("/{storeId}")
+    @Operation(summary = "매장 정보 수정", description = "해당 매장의 정보를 수정한다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "수정 성공"),
+            @ApiResponse(responseCode = "404", description = "존재하지 않는 매장"),
+            @ApiResponse(responseCode = "400", description = "잘못된 요청 데이터"),
+            @ApiResponse(responseCode = "500", description = "서버 오류")
+    })
+    public StoreResponseDto update(
+            @Parameter(description = "수정할 매장 ID", required = true)
+            @PathVariable Long storeId,
+
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "수정할 매장 정보",
+                    required = true,
+                    content = @Content(schema = @Schema(implementation = StoreRequestDto.class))
+            ) StoreRequestDto requestDto
+    ) {
+        return storeService.update(storeId, requestDto);
     }
 }
