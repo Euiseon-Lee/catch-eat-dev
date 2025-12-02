@@ -21,31 +21,33 @@ public class StoreServiceImpl implements StoreService {
      * - storeStatus가 null이면 기본값 "01"(영업 중)으로 설정
      */
     @Override
-    public StoreResponseDto create(StoreRequestDto requestDto) {
-        String status = requestDto.getStoreStatus();
-        if (status == null || status.isBlank()) {
-            status = "01"; // 기본: 영업 중
+    public StoreResponseDto create(StoreRequestDto dto) {
+
+        if (storeRepository.existsDuplicateStore(dto.getStoreName(), dto.getRoadAddress(), dto.getLotAddress())) {
+            throw new IllegalArgumentException("이미 동일한 매장이 존재합니다 (매장명 + 주소 중복): " + dto.getStoreName());
         }
 
-        Store store = Store.builder()
-                .storeCode(requestDto.getStoreCode())
-                .storeName(requestDto.getStoreName())
-                .storeStatus(status)
-                .storeDesc(requestDto.getStoreDesc())
-                .address(requestDto.getAddress())
-                .province(requestDto.getProvince())
-                .city(requestDto.getCity())
-                .district(requestDto.getDistrict())
-                .roadAddress(requestDto.getRoadAddress())
-                .lotAddress(requestDto.getLotAddress())
-                .latitude(requestDto.getLatitude())
-                .longitude(requestDto.getLongitude())
-                .build();
+        String status = (dto.getStoreStatus() == null || dto.getStoreStatus().isBlank()) ? "01" : dto.getStoreStatus();
+
+        Store store = new Store();
+        store.setStoreCode(dto.getStoreCode());
+        store.setStoreName(dto.getStoreName());
+        store.setStoreStatus(status);
+        store.setStoreDesc(dto.getStoreDesc());
+
+        store.setAddress(dto.getAddress());
+        store.setProvince(dto.getProvince());
+        store.setCity(dto.getCity());
+        store.setDistrict(dto.getDistrict());
+        store.setRoadAddress(dto.getRoadAddress());
+        store.setLotAddress(dto.getLotAddress());
+
+        store.setLatitude(dto.getLatitude());
+        store.setLongitude(dto.getLongitude());
 
         Store saved = storeRepository.save(store);
         return StoreResponseDto.from(saved);
     }
-
     /**
      * ID 기준 단건 조회
      */
@@ -58,7 +60,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     /**
-     * store_code 기준 단건 조회
+     * store_code 기준 조회
      */
     @Override
     @Transactional(readOnly = true)

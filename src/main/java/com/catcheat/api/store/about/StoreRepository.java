@@ -1,6 +1,8 @@
 package com.catcheat.api.store.about;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
@@ -54,10 +56,30 @@ import java.util.Optional;
  */
 public interface StoreRepository extends JpaRepository<Store, Long> {
     /**
-     * 매장 코드(store_code) 기준으로 단건 조회.
+     * 매장 코드(store_code) 기준으로 조회.
      * @param storeCode 매장 코드
      * @return Optional<Store>
      */
     Optional<Store> findByStoreCode(String storeCode);
 
+    /**
+     * 매장 등록 전 중복 검사
+     * @param storeName
+     * @param roadAddress
+     * @return
+     */
+    @Query("""
+        select case when count(s) > 0 then true else false end 
+        from Store s 
+        where s.storeName = :storeName
+          and (
+               (s.roadAddress is not null and s.roadAddress = :roadAddress)
+            or (s.lotAddress is not null and s.lotAddress = :lotAddress)
+          )
+    """)
+    boolean existsDuplicateStore(
+            @Param("storeName") String storeName
+            , @Param("roadAddress") String roadAddress
+            , @Param("lotAddress") String lotAddress
+    );
 }
