@@ -61,8 +61,8 @@ public class StoreOperationHourController {
     })
     public StoreOperationHourResponseDto update(
             @Parameter(description = "운영시간 ID", required = true) @PathVariable Long hourId,
-            @RequestBody StoreOperationHourRequestDto dto
-    ) {
+            @RequestBody StoreOperationHourRequestDto dto,
+            @PathVariable String storeId) {
         return service.update(hourId, dto);
     }
 
