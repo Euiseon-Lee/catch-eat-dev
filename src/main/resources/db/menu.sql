@@ -1,5 +1,5 @@
 -- 매장 메뉴
-CREATE TABLE menu_info (
+CREATE TABLE menu (
     menu_id             BIGSERIAL       PRIMARY KEY
     , store_id          BIGINT          NOT NULL
     , menu_category_id  BIGINT
@@ -22,23 +22,23 @@ CREATE TABLE menu_info (
     , updated_by        VARCHAR(50)     NOT NULL DEFAULT 'SYSTEM'
 
     , CONSTRAINT uq_store_menu UNIQUE (store_id, menu_code)
-    , CONSTRAINT fk_menu_info_store FOREIGN KEY (store_id)
+    , CONSTRAINT fk_menu_store FOREIGN KEY (store_id)
         REFERENCES store(store_id) ON DELETE CASCADE
 
-    , CONSTRAINT ck_menu_info_base_price_non_negative
+    , CONSTRAINT ck_menu_base_price_non_negative
         CHECK (base_price >= 0)
 
-    , CONSTRAINT ck_menu_info_discount_price_non_negative
+    , CONSTRAINT ck_menu_discount_price_non_negative
         CHECK (discount_price IS NULL OR discount_price >= 0)
 
-    , CONSTRAINT ck_menu_info_discount_logic
+    , CONSTRAINT ck_menu_discount_logic
         CHECK (discount_price IS NULL OR discount_price <= base_price)
 
-    , CONSTRAINT ck_menu_info_discount_period
+    , CONSTRAINT ck_menu_discount_period
         CHECK (discount_end_dt IS NULL OR discount_start_dt IS NULL OR discount_start_dt <= discount_end_dt)
 );
 
 -- 조회용 인덱스
-CREATE INDEX idx_menu_info_menu_category ON menu_info (store_id, menu_category_id);
-CREATE INDEX idx_menu_info_menu_status ON menu_info (store_id, menu_status);
-CREATE INDEX idx_menu_info_store_recommended ON menu_info (store_id, is_recommended);
+CREATE INDEX idx_menu_menu_category ON menu (store_id, menu_category_id);
+CREATE INDEX idx_menu_menu_status ON menu (store_id, menu_status);
+CREATE INDEX idx_menu_store_recommended ON menu (store_id, is_recommended);
