@@ -1,6 +1,5 @@
 package com.catcheat.api.menu.about;
 
-import com.catcheat.api.store.about.Store;
 import com.catcheat.api.store.about.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,7 @@ import java.time.LocalDateTime;
  *  3) 응답 DTO 변환 (entity -> dto)
  *
  * ⚠️ 주의 포인트
- *  - menuCode를 유지한다면 count()+1 방식은 동시성 중복 위험 💥
+ *  - menuCode를 유지한다면 count()+1 방식은 동시성 중복 위험
  *    -> (권장) DB 시퀀스/별도 채번 테이블/락 기반 채번으로 전환
  *  - 할인 이벤트는 basePrice/discountPrice + 기간(start/end) 일관성 검증 필요
  *    -> discountPrice != null 이면 start/end 모두 필수, start <= end 보장
