@@ -11,8 +11,7 @@ public class MenuController {
     private final MenuService menuService;
 
     @PostMapping
-    public MenuResponseDto createMenu(@PathVariable Long storeId,
-                                      @RequestBody MenuRequestDto dto) {
+    public MenuResponseDto createMenu(@PathVariable Long storeId, @RequestBody MenuRequestDto dto) {
         return menuService.create(storeId, dto);
     }
 }
