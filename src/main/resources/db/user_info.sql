@@ -3,9 +3,16 @@ CREATE TABLE user_info (
     , provider          VARCHAR(20) NOT NULL                -- 로그인 제공자 (GOOGLE, KAKAO, APPLE, LOCAL)
     , provider_id       VARCHAR(100)                        -- SNS 로그인 사용자 고유 ID (LOCAL은 NULL)
     , email             VARCHAR(255) NOT NULL UNIQUE        -- 이메일 (로컬 사용자는 ID로 사용, SNS 로그인 사용자는 선택적)
-    , password          VARCHAR(255)                        -- 비밀번호 (LOCAL 계정만 사용)
     , nickname          VARCHAR(50)                         -- 닉네임
     , profile_image_url VARCHAR(500)                        -- 프로필 이미지 URL
+    
+    , password          VARCHAR(255)                        -- 비밀번호 (LOCAL 계정만 사용)
+    , password_changed_at TIMESTAMP
+
+    , last_login_at     TIMESTAMP
+    , login_fail_count INT NOT NULL DEFAULT 0
+    , account_locked_until TIMESTAMP
+    
     , created_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- 생성 시간
     , updated_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- 수정 시간 >> 트리거로 업데이트
 
